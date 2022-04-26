@@ -3,7 +3,7 @@ using System;
 
 public class Player : AnimationSprite
 {
-    public bool up, left, right, hasJumped;
+    public bool up, left, right, down, hasJumped;
 
     private HitBox hitBox;
 
@@ -30,80 +30,82 @@ public class Player : AnimationSprite
     }
 
 
-    void UpdateScreenPosition()
-    {
-        x = position.x;
-        y = position.y;
-    }
-
     public void Update()
     {
-
-        UpdateScreenPosition();
-
+        down = Input.GetKey(Key.S);
         up = Input.GetKey(Key.W);
         left = Input.GetKey(Key.A);
         right = Input.GetKey(Key.D);
 
         if (left)
         {
-            velocity.x = -3;
+            _mirrorX = true;
+            directionX = -1;
         }
 
         else if (right)
         {
-            velocity.x = 3;
+            _mirrorX = false;
+            directionX = 1;
         }
 
         else
         {
-            velocity.x = 0;
+            directionX = 0;
         }
 
-        if (up && !hasJumped)
+        if (down)
         {
-            position.y -= 6.5f;
-            velocity.y = -10f;
-            hasJumped = true;
-        }
-
-        if (hasJumped)
-        {
-            velocity.y += 0.50f;
-        }
-
-        if (!hasJumped)
-        {
-            velocity.y = 0;
+            y += 5;
         }
 
 
+        /*  if (up && !hasJumped)
+           {
+               position.y -= 6.5f;
+               velocity.y = -10f;
+               hasJumped = true;
+           }
 
-        GameObject[] contactObjects = game.FindObjectsOfType<CollisionTile>();
+           if (hasJumped)
+           {
+               velocity.y += 0.50f;
+           }
 
-        if (contactObjects != null)
-        {
-            foreach (CollisionTile tile in contactObjects)
-            {
-                if ((HitTest(tile)))
-                { 
-                    hasJumped = false;
-                }
+           if (!hasJumped)
+           {
+               velocity.y = 0;
+           }
+        */
+           if (directionX != 0 && directionY != 0)
+           {
+               x += directionX * 5;
+               y += directionY * 5;
+           }
+           else
+           {
+               x += directionX * 5;
+               y += directionY * 5;
+           }
 
-                
-            }
-        }
+         /*
 
-        /*
-        var percentCurrent = velocity * 0.1f;
+           GameObject[] contactObjects = game.FindObjectsOfType<CollisionTile>();
 
-        var percentPrevious = previousVelocity * 0.9f;
+           if (contactObjects != null)
+           {
+               foreach (CollisionTile tile in contactObjects)
+               {
+                   if ((HitTest(tile)))
+                   { 
+                       hasJumped = false;
+                   }
 
-        velocity = percentCurrent + percentPrevious;
-    */
 
-        position += velocity;
 
-        previousVelocity = velocity;
+               }
+           }
+        */
+
     }
 }
