@@ -5,6 +5,8 @@ public class Player : AnimationSprite
 {
     public bool up, left, right, hasJumped;
 
+    private HitBox hitBox;
+
     public Vec2 previousVelocity;
 
     public int directionX, directionY;
@@ -20,7 +22,11 @@ public class Player : AnimationSprite
     {
         hasJumped = true;
         currentFrame = 1;
-       
+        position.x = 500;
+        position.y = 500;
+
+        hitBox = new HitBox(this);
+        AddChild(hitBox);
     }
 
 
@@ -29,7 +35,6 @@ public class Player : AnimationSprite
         x = position.x;
         y = position.y;
     }
-
 
     public void Update()
     {
@@ -58,7 +63,7 @@ public class Player : AnimationSprite
         if (up && !hasJumped)
         {
             position.y -= 6.5f;
-            velocity.y = -40f;
+            velocity.y = -10f;
             hasJumped = true;
         }
 
@@ -67,30 +72,36 @@ public class Player : AnimationSprite
             velocity.y += 0.50f;
         }
 
-        if (position.y > 500)
-        {
-            position.y = 500;
-            hasJumped = false;
-        }
-
-
         if (!hasJumped)
         {
             velocity.y = 0;
         }
 
+        GameObject[] contactObjects = game.FindObjectsOfType<CollisionTile>();
+
+        if (contactObjects != null)
+        {
+            foreach (CollisionTile tile in contactObjects)
+            {
+                if ((HitTest(tile)))
+                { 
+                    hasJumped = false;
+                }
+
+                
+            }
+        }
+
+        /*
         var percentCurrent = velocity * 0.1f;
 
         var percentPrevious = previousVelocity * 0.9f;
 
         velocity = percentCurrent + percentPrevious;
-    
+    */
 
         position += velocity;
 
         previousVelocity = velocity;
-
-
     }
-
 }
