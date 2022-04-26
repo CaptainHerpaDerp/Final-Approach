@@ -14,7 +14,7 @@ public class MyGame : Game
         player1 = new Player();
 		player2 = new Player();
 
-        level = new Level("text.tmx");
+        level = new Level("untitled.tmx");
 
         AddChild(level);
 

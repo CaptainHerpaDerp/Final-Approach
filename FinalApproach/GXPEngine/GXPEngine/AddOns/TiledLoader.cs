@@ -130,7 +130,7 @@ namespace TiledMapParser {
 
 			this.rootObject=rootObject;
 			if (this.rootObject==null) {
-				this.rootObject=Game.main;
+				this.rootObject= GXPEngine.Game.main;
 			}
 			this.addColliders = addColliders;
 			this.autoInstance = autoInstance;

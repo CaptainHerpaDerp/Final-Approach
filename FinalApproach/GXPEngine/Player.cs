@@ -77,6 +77,8 @@ public class Player : AnimationSprite
             velocity.y = 0;
         }
 
+
+
         GameObject[] contactObjects = game.FindObjectsOfType<CollisionTile>();
 
         if (contactObjects != null)

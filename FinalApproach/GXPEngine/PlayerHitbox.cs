@@ -6,7 +6,7 @@ public class SolidHitBox : EasyDraw
 	public int facing;
 	public int restrictX, restrictY;
 	public string Axis;
-
+	
 	public SolidHitBox(Player player, string Axis) : base(25, 25, true)
 	{
 		this.Axis = Axis;
