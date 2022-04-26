@@ -77,16 +77,11 @@ public class Player : AnimationSprite
                velocity.y = 0;
            }
         */
-           if (directionX != 0 && directionY != 0)
-           {
+          
+           
                x += directionX * 5;
                y += directionY * 5;
-           }
-           else
-           {
-               x += directionX * 5;
-               y += directionY * 5;
-           }
+           
 
          /*
 

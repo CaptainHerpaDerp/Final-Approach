@@ -26,6 +26,7 @@ public class SolidHitBox : EasyDraw
 		{
 			if (restrictX == -1 || restrictX == 1)
 			{
+                System.Console.WriteLine(true);
 				_player.directionX = 0;
 			}
 
@@ -43,7 +44,6 @@ public class SolidHitBox : EasyDraw
 			switch (_player.directionX)
 			{
 				case 1:
-                    System.Console.WriteLine(true);
 					restrictX = 1;
 					x = 30;
 					break;
