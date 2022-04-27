@@ -19,7 +19,7 @@ class CollisionTile : EasyDraw
 
     void Draw()
     {
-        Fill(0, 0, 0, 0);
+        Fill(55, 0, 0, 55);
         Stroke(0, 0, 0, 0);
         Rect(0, 0, width, height);
     }

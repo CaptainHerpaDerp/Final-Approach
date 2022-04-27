@@ -1,117 +1,110 @@
 ﻿using GXPEngine;
 
-public class SolidHitBox : EasyDraw
-{
-    private Player _player;
-	public int facing;
-	public int restrictX, restrictY;
-	public string Axis;
-	
-	public SolidHitBox(Player player, string Axis) : base(25, 25, true)
-	{
-		this.Axis = Axis;
-        _player = player;
-		Draw(0, 0, 255, 100);
-	}
-
-	void Draw(byte red, byte green, byte blue, byte transparency)
-	{
-		Fill(0, 0, 255, 55);
-		Rect(_player.x, _player.y, 450, 570);
-	}
-
-	void OnCollision(GameObject other)
-	{
-		if (other is CollisionTile)
-		{
-			if (restrictX == -1 || restrictX == 1)
-			{
-                System.Console.WriteLine(true);
-				_player.directionX = 0;
-			}
-
-			if (restrictY == -1 || restrictY == 1)
-			{
-                _player.directionY = 0;
-			}
-		}
-	}
-
-	void Update()
-	{
-		if (Axis == "Horizontal")
-		{
-			switch (_player.directionX)
-			{
-				case 1:
-					restrictX = 1;
-					x = 30;
-					break;
-
-				case -1:
-					restrictX = -1;
-					x = -5;
-					break;
-
-				case 0:
-					restrictX = 0;
-					x = 17.5f;
-					break;
-			}
-		}
-
-		if (Axis == "Vertical")
-		{
-			switch (_player.directionY)
-			{
-				case 1:
-					restrictY = 1;
-					y = 30;
-					break;
-
-				case -1:
-					restrictY = -1;
-					y = -5;
-					break;
-
-				case 0:
-					restrictY = 0;
-					y = 17.5f;
-					break;
-			}
-		}
-	}
-}
-
-
 public class HitBox : EasyDraw
 {
-	public SolidHitBox solidHitBoxX, solidHitBoxY;
-    private Player _player;
-	public bool flip;
-	public float lastX, lastY;
+    SolidHitBox horzontal, vertical;
+    Player player;
 
-	public HitBox(Player player) : base(50, 50, true)
-	{
-        _player = player;
-		solidHitBoxX = new SolidHitBox(_player, "Horizontal");
-		solidHitBoxY = new SolidHitBox(_player, "Vertical");
-        AddChild(solidHitBoxX);
-		AddChild(solidHitBoxY);
-		Draw(150, 0, 255, 100);
+    public HitBox(Player player) : base(50, 50, true)
+    {
+        this.player = player;
 
-	}
-	void Draw(byte red, byte green, byte blue, byte transparency)
-	{
-		Fill(0, 255, 0, 55);
-		Rect(_player.x, _player.y, 450, 570);
-
-	}
-
-	void Update()
-	{
-		lastX = _player.x;
-		lastY = _player.y;
+        Fill(255, 255, 0, 150);
+        Rect(player.x, player.y, 450, 570);
+        horzontal = new SolidHitBox(player, 1);
+        vertical = new SolidHitBox(player, 2);
+        AddChild(horzontal);
+        AddChild(vertical);
     }
+
+    void Update()
+    {
+
+    }
+}
+
+public class SolidHitBox : EasyDraw
+{
+    Player player;
+    private int _axis, _restrictX, _restrictY;
+    
+    //ss
+    public SolidHitBox(Player player, int Axis) : base(50, 50, true)
+    {
+        this.player = player;
+        _axis = Axis;
+        Fill(255, 0, 0, 150);
+        Rect(player.x, player.y, 450, 570);
+    }
+
+    void OnCollision(GameObject other)
+    {
+        if (other is CollisionTile)
+        {
+            if (_restrictX == 1 || _restrictX == -1)
+            {
+                player.lockX = true;
+            }
+
+            if (_restrictY == 1 || _restrictY == -1)
+            {
+                player.lockY = true;
+            }
+        }
+
+    }
+
+
+    void Update()
+    {
+        if (_axis == 1)
+        {
+            if (player.velocity.x > 0)
+            {
+                _restrictX = 1;
+                x = 5;
+            }
+
+
+            if (player.velocity.x < 0)
+            {
+                _restrictX = -1;
+                x = -5;
+            }
+
+            if (player.velocity.x < 0.01 && player.velocity.x > -0.01)
+            {
+                _restrictX = 0;
+                x = 0;
+            }
+
+        }
+
+        if (_axis == 2)
+        {
+            if (player.velocity.y > 0)
+            {
+                _restrictY = 1;
+                y = 5;
+            }
+
+            if (player.velocity.y < 0)
+            {
+                _restrictY = -1;
+                y = -5;
+            }
+
+            if (player.velocity.y < 0.01 && player.velocity.y > -0.01)
+            {
+                _restrictY = 0;
+                y = 0;
+            }
+        }
+
+        player.lockX = false;
+        player.lockY = false;
+
+    }
+
 
 }
