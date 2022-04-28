@@ -6,3 +6,11 @@ C:\Users\ruben\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\obj\x86\D
 C:\Users\ruben\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
 C:\Users\ruben\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.exe
 C:\Users\ruben\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.pdb
+C:\Users\ruben\OneDrive\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\bin\Debug\GXPEngine.exe.config
+C:\Users\ruben\OneDrive\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\bin\Debug\GXPEngine.exe
+C:\Users\ruben\OneDrive\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\bin\Debug\GXPEngine.pdb
+C:\Users\ruben\OneDrive\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.csproj.AssemblyReference.cache
+C:\Users\ruben\OneDrive\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.csproj.SuggestedBindingRedirects.cache
+C:\Users\ruben\OneDrive\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
+C:\Users\ruben\OneDrive\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.exe
+C:\Users\ruben\OneDrive\Documents\GitHub\Final-Approach\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.pdb

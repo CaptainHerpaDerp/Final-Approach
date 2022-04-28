@@ -1,4 +1,5 @@
-﻿using GXPEngine;
+﻿using System;
+using GXPEngine;
 
 public class HitBox : EasyDraw
 {

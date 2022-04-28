@@ -6,15 +6,19 @@ public class Player : AnimationSprite
     private bool left, right, up, down;
     public int directionX, directionY, movementSpeed = 3;
     public bool lockX, lockY;
-
+    public string movementMethod;
 
     public Vec2 position, velocity, previousVelocity;
 
-    public Player() : base("barry.png" , 7, 1)
+    public Player(int x, int y, string MovementMethod) : base("barry.png" , 7, 1)
     {
         SetFrame(1);
         hitBox = new HitBox(this);
         AddChild(hitBox);
+        position.x = x;
+        position.y = y;
+        movementMethod = MovementMethod;
+
     }
 
     void UpdateScreenPosition()
@@ -29,10 +33,20 @@ public class Player : AnimationSprite
 
         UpdateScreenPosition();
 
-        left = Input.GetKey(Key.A);
-        right = Input.GetKey(Key.D);
-        up = Input.GetKey(Key.W);
-        down = Input.GetKey(Key.S);
+        if (movementMethod == "wasd")
+        {
+            left = Input.GetKey(Key.A);
+            right = Input.GetKey(Key.D);
+            up = Input.GetKey(Key.W);
+            down = Input.GetKey(Key.S);
+        }
+        else
+        {
+            left = Input.GetKey(Key.LEFT);
+            right = Input.GetKey(Key.RIGHT);
+            up = Input.GetKey(Key.UP);
+            down = Input.GetKey(Key.DOWN);
+        }
 
 
         if (left) { directionX = -1; }

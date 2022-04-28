@@ -11,14 +11,15 @@ public class MyGame : Game
     public MyGame() : base(1920, 1080, false, pVSync : true)		
 	{
 
-        player1 = new Player();
-		player2 = new Player();
+        player1 = new Player(500, 500, "wasd");
+		player2 = new Player(600, 600, "arrow");
 
         level = new Level("untitled.tmx");
 
         AddChild(level);
 
 		AddChild(player1);
+		AddChild(player2);
 
 	}
 
